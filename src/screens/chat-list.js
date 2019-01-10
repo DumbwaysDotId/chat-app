@@ -23,6 +23,8 @@ export default class ChatList extends Component {
     }
   
     componentWillMount() {
+      alert(this.props.navigation.getParam('channelId'))
+
       this.setState({
         messages: [
           {
