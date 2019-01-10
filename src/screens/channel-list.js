@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {Container, Content, List, ListItem, Text, Left, Body, Right, Thumbnail, Spinner} from 'native-base'
 import {connect} from 'react-redux'
+import {AsyncStorage} from 'react-native'
 
 import {allChannels} from '../_redux/actions/channel'
 
@@ -10,8 +11,9 @@ export class ChannelList extends Component{
         title: 'Chats',
     }
 
-    componentDidMount(){
-        this.props.allChannels()
+    async componentDidMount(){
+        const token = await AsyncStorage.getItem('token')
+        this.props.allChannels(token)
     }
 
     render(){
@@ -50,7 +52,7 @@ const mapStateToProps = ({channel})=> ({
 })
 
 const mapDispatchToProps = {
-    allChannels
+    allChannels : (token)=> allChannels(token)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChannelList)
