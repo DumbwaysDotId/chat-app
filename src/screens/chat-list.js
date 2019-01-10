@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import { GiftedChat } from 'react-native-gifted-chat'
 import {View, Icon, Thumbnail} from 'native-base'
 import {connect} from 'react-redux'
+import axios from 'axios'
 
 import {allMessages} from '../_redux/actions/message'
 
@@ -17,17 +18,28 @@ export class ChatList extends Component {
           />
       )
     }
-  
-    componentWillMount() {
-      const channelId = this.props.navigation.getParam('channelId')
 
+    _refetch(){
+      const channelId = this.props.navigation.getParam('channelId')
       this.props.dispatch(allMessages(channelId))
     }
   
+    componentWillMount() {
+      this._refetch()
+    }
+  
     onSend(messages = []) {
-      this.setState(previousState => ({
-        messages: GiftedChat.append(previousState.messages, messages),
-      }))
+      const channel_id = this.props.navigation.getParam('channelId')
+      const {text} = messages[0]
+
+      const data = {
+        text,
+        channel_id
+      }
+
+      axios.post(`http://192.168.43.69:3333/message`, data).then(()=>{
+        this._refetch()
+      })
     }
   
     render() {
