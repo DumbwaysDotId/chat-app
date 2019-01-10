@@ -1,9 +1,12 @@
-import {ContactList, ChatList, ChannelList} from '../screens'
+import {Login, ContactList, ChatList, ChannelList} from '../screens'
 import {createStackNavigator} from 'react-navigation'
 
-const initialRouteName = "ChannelList"
+const initialRouteName = "Login"
 
 const AppNavigator = createStackNavigator({
+  Login: {
+    screen: Login    
+  },
   ChannelList: {
     screen: ChannelList    
   },
