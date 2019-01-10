@@ -6,6 +6,7 @@ import AppNavigator from '../../_navigators';
 import todo from './todo'
 import contact from './contact'
 import channel from './channel'
+import message from './message'
 
 const navReducer = createNavigationReducer(AppNavigator);
 const reducers = combineReducers({
@@ -13,6 +14,7 @@ const reducers = combineReducers({
     todo,
     contact,
     channel,
+    message,
 });
 
 export default reducers
