@@ -10,6 +10,7 @@
     "e2e": "mocha e2e --opts ./e2e/mocha.opts"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "babel-plugin-module-resolver": "^3.1.1",
     "native-base": "^2.10.0",
     "react": "16.6.3",
